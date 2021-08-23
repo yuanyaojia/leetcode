@@ -1,22 +1,28 @@
-/**
- *  取HTML中使用频率最高的标签类型
- */
+function findTarget(arr, target) {
+    let res = [];
 
-function tag(nodeList) {
-    let res = {};
-    let num = 0;
-    let resNum = 0;
+    let temp = [];
 
-    for(let i = 0; i < nodeList.length; i++) {
-        let result = nodeList[i];
-        if (result.children === result.children.tagName) {
-            res[result.tagName] = num++;
-        } else {
-            res[result.tagName] = resNum++;
+    for (let k = 0; k < arr.length; k++) {
+        if (temp.indexOf(arr[k]) == -1) {
+            temp.push(arr[k]);
         }
     }
+
+
+    for (let i = 0; i < temp.length - 1; i++) {
+        for (let j = i + 1; j < temp.length; j++) {
+            if (temp[i] + temp[j] === target) {
+                res.push(temp[i]);
+                res.push(temp[j]);
+            } 
+        }
+    }
+
     return res;
+
 }
 
-const nodeList = [{tagName: 1, children: {tagName: 2, children: {tagName: 2, children: null}}}];
-console.log(tag(nodeList));
+const arr = [1,-2,3,5,4,5,-6];
+const target = -1;
+console.log(findTarget(arr, target));

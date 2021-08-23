@@ -1,13 +1,20 @@
 function count(start, end) {
     console.log(start);
 
-    for (let i = start; i <= end; i++) {
-        const timer = setTimeout(() => {
-            console.log()
-    
-        }, 100);
-        clearTimeout(timer);
+    const timer = setInterval(() => {
+        if (start >= end) {                
+            clearInterval(timer);
+        } else {
+            console.log(++start);
+        }
+    }, 100);
+
+    return {
+        cancel() {
+            clearInterval(timer);
+        }
     }
+    
 }
 
-console.log(count(1, 10));
+count(1, 10);

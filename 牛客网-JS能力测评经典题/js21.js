@@ -1,0 +1,4 @@
+function argsAsArray(fn, arr) {
+    
+
+}
